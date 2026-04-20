@@ -23,7 +23,7 @@ experience:
       - "Take ownership of new product features end-to-end, from scoping with design to shipping to millions of users."
       - "Work on performance improvements and complex bug investigations in a large-scale, mature codebase."
       - "Implemented frontend authentication flows, including passkey login and mobile app verification."
-      
+
   - title: "Junior Frontend Developer"
     company: "Jotform"
     url: "https://www.jotform.com"
@@ -95,3 +95,4 @@ generation_preferences:
     - "direct"
     - "specific"
     - "impact-oriented"
+    
