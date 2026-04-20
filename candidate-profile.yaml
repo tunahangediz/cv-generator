@@ -11,8 +11,8 @@ basics:
     - "https://github.com/tunahangediz"
 
 summary: >
-  Frontend-focused software developer experienced with React and TypeScript across support,
-  product, and internship roles, with hands-on work in UI development, debugging, and test automation.
+  Frontend developer with hands-on experience across the full product lifecycle, currently on the Enterprise team at Jotform building features used by millions.
+  Strong with React and TypeScript, comfortable in large codebases and fast-moving teams.
 
 experience:
   - title: "Frontend Developer"
@@ -20,28 +20,27 @@ experience:
     url: "https://www.jotform.com"
     dates: "2026 - Present"
     descriptions:
-      - "Develop scalable frontend features for production web applications using React and TypeScript."
-      - "Build and maintain reusable UI components to improve consistency across product surfaces."
-      - "Collaborate with design and engineering teams to deliver clear, user-focused interfaces."
-      - "Contribute to debugging and performance improvements in complex frontend flows."
-
+      - "Take ownership of new product features end-to-end, from scoping with design to shipping to millions of users."
+      - "Work on performance improvements and complex bug investigations in a large-scale, mature codebase."
+      - "Implemented frontend authentication flows, including passkey login and mobile app verification."
+      
   - title: "Junior Frontend Developer"
     company: "Jotform"
     url: "https://www.jotform.com"
     dates: "Apr 2025 - 2026"
     descriptions:
-      - "Implemented reusable React components and improved maintainability of frontend modules."
-      - "Worked on API integrations and data-fetching flows for product features."
-      - "Delivered bug fixes and feature enhancements in production-facing systems."
+      - "Owned features independently, from design handoff through to production."
+      - "Handled complex bug investigations across a large, unfamiliar codebase."
+      - "Shipped fixes and features consistently in a fast-moving production environment."
 
   - title: "Frontend Support Engineer"
     company: "Jotform"
     url: "https://www.jotform.com"
     dates: "Nov 2024 - Apr 2025"
     descriptions:
-      - "Resolved frontend issues using JavaScript/TypeScript, React, SCSS, and CSS."
-      - "Handled support tickets and addressed user-reported technical issues."
-      - "Supported product development by troubleshooting and validating fixes."
+      - "Resolved real production issues in JavaScript, React, and SCSS - not isolated tasks, but live code used by millions."
+      - "Built and shipped API-driven features for production, handling both data-fetching logic and the UI layer."
+      - "Refactored frontend modules to make them easier to test and extend."
 
   - title: "Frontend Developer Intern"
     company: "Jotform"
