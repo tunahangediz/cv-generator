@@ -92,6 +92,9 @@
         },
         "url": {
           "$ref": "#/$defs/nullable_string"
+        },
+        "links": {
+          "$ref": "#/$defs/string_list"
         }
       }
     },

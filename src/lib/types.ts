@@ -1,6 +1,7 @@
 export type ContactInfo = {
   email: string;
   url: string;
+  links: string[];
 };
 
 export type CvExperienceEntry = {

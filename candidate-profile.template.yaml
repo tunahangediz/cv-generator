@@ -11,6 +11,7 @@ basics:
   current_title: ""
   email: ""
   url: ""
+  links: []
 
 summary: ""
 

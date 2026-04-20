@@ -32,7 +32,7 @@ function renderMaybeLink(value: string): string {
 }
 
 function renderContactRow(cv: RenderableCv): string {
-  const items = [cv.contact.email, cv.contact.url]
+  const items = [cv.contact.email, ...cv.contact.links]
     .filter(nonEmpty)
     .map((item) => `<span>${renderMaybeLink(item)}</span>`);
 
@@ -60,20 +60,49 @@ function renderSection(title: string, body: string): string {
   return `<section class="${sectionClassName(title)}"><h2>${escapeHtml(title)}</h2>${body}</section>`;
 }
 
+type ExperienceEntry = RenderableCv["experience"][number];
+type ExperienceGroup = {
+  company: string;
+  entries: ExperienceEntry[];
+};
+
+function groupExperienceByCompany(entries: ExperienceEntry[]): ExperienceGroup[] {
+  return entries.reduce<ExperienceGroup[]>((groups, entry) => {
+    const lastGroup = groups[groups.length - 1];
+    if (lastGroup && lastGroup.company === entry.company) {
+      lastGroup.entries.push(entry);
+      return groups;
+    }
+
+    groups.push({ company: entry.company, entries: [entry] });
+    return groups;
+  }, []);
+}
+
 function renderExperience(cv: RenderableCv): string {
-  return cv.experience
-    .map((entry) => {
-      const metaParts = [entry.dates ? escapeHtml(entry.dates) : "", entry.url ? renderMaybeLink(entry.url) : ""].filter(nonEmpty);
+  return groupExperienceByCompany(cv.experience)
+    .map((group) => {
       return `
-        <article class="entry">
+        <article class="entry company-group">
           <div class="entry-head">
             <div>
-              <h3>${escapeHtml(entry.company)}</h3>
-              <div class="entry-subtitle">${escapeHtml(entry.title)}</div>
+              <h3>${escapeHtml(group.company)}</h3>
             </div>
-            <div class="entry-meta">${metaParts.join(" | ")}</div>
           </div>
-          ${renderBullets(entry.descriptions)}
+          ${group.entries
+            .map((entry) => {
+              const metaParts = [entry.dates ? escapeHtml(entry.dates) : "", entry.url ? renderMaybeLink(entry.url) : ""].filter(nonEmpty);
+              return `
+                <div class="role-entry">
+                  <div class="role-head">
+                    <div class="entry-subtitle role-title">${escapeHtml(entry.title)}</div>
+                    <div class="entry-meta">${metaParts.join(" | ")}</div>
+                  </div>
+                  ${renderBullets(entry.descriptions)}
+                </div>
+              `;
+            })
+            .join("")}
         </article>
       `;
     })
@@ -278,6 +307,22 @@ export function renderHtml(cv: RenderableCv, theme: ThemeName, pageSize: PageSiz
           }
           .entry-subtitle { margin-top: 2px; color: var(--muted); font-size: 12px; }
           .entry-meta { color: var(--muted); font-size: 12px; text-align: right; white-space: nowrap; }
+          .company-group .role-entry { margin-top: 8px; }
+          .company-group .role-entry:first-of-type { margin-top: 4px; }
+          .role-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 12px;
+            break-after: avoid-page;
+            page-break-after: avoid;
+          }
+          .role-title {
+            margin-top: 0;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--muted);
+          }
           a { color: inherit; text-decoration: none; }
           a:hover { text-decoration: underline; }
           p { margin: 0; }
